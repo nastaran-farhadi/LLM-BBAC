@@ -1,4 +1,4 @@
-# Role Based Access Control in Large Language Models
+# Behavior Based Access Control in Large Language Models
 
 This is the code repository for implementing and exploring different ways to achieve role based access control in Large Language Models. I have tried out different methods like RAG and fine tuning. In RAG, a layer is being built between the user and the LLM which acts as system for role based access control.
 
