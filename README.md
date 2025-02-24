@@ -1,6 +1,6 @@
 # Behavior Based Access Control in Large Language Models
 
-This is the code repository for implementing and exploring different ways to achieve role based access control in Large Language Models. I have tried out different methods like RAG and fine tuning. In RAG, a layer is being built between the user and the LLM which acts as system for role based access control.
+This code repository contains implementations and experiments with various approaches to Behavior-based access control in Large Language Models. I’ve explored techniques such as RAG and fine-tuning to accomplish this. With RAG, an intermediary layer is created between the user and the LLM, serving as a system to enforce Behavior-based access control.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -28,8 +28,8 @@ Follow these steps to set up the project on your local machine:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/aiqqia/LLM-RBAC.git
-   cd LLM-RBAC
+   git clone [https://github.com/aiqqia/LLM-RBAC.git](https://github.com/nastaran-farhadi/LLM-BBAC)
+   cd LLM-BBAC
    ```
 
 ### Usage
@@ -40,21 +40,35 @@ Running these files to generate relevant files for testing:
 ```
 python3 data_gen.py
 ```
-2. Run this to create a CSV file for all roles, and its access information:
+2. Run this to create a CSV file for all persons, and its access information:
 ```
-python3 role_gen.py
+python3 attributes_gen.py
 ```
 3. Run this to vectorize the entire database into chunks and store it in the Chroma database:
 ```
 python3 generate_database.py
+4. Import Model of LLM and API key
+import google.generativeai as genai
+
+# Configure Gemini
+genai.configure(api_key="")
+
+# Initialize the model
+GEMINI_MODEL = genai.GenerativeModel('gemini-pro')
 ```
-4. Finally, we can query the interface and provide the role and ask it any question:
+5. Import necessary libraries:
+!pip install langchain-google-genai
+import os
+from langchain_google_genai import ChatGoogleGenerativeAI
 ```
-python3 query_data "My Role" "My Question"
+
+6. Finally, we can query the interface and provide the person_name and ask it any question:
+```
+python query_data.py "Person_name" "My question" "Time" "Location"   
 ```
 
 Example: 
 ```
-python3 query_data "HR Manager" "What is Cheryl Mack's salary?"
+python query_data.py "John Doe" "What is Victoria Vasquez's salary?" "Working Hours" "In the Department"
 ```
 
